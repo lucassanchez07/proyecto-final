@@ -23,6 +23,8 @@ class App:
         luigi.move()
         paquete.move()
         paquete.subir(mario, luigi)
+        if paquete.caerse == True:
+            paquete.caer()
         
         # Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
         # Aquí es donde iría:
@@ -45,6 +47,6 @@ class App:
         paquete.draw()
 
 App()
-#HASTA AQUI ENTENDIDO
+
 
 
