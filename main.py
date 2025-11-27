@@ -23,7 +23,7 @@ class App:
         luigi.move()
         paquete.move()
         paquete.subir(mario, luigi)
-        if paquete.caerse == True:
+        if paquete.caerse == True: #(con el objetivo de que se genere un bucle porque sino la bola se queda quieta y no cae ya que es puntual y solo baja un fotograma)
             paquete.caer()
         
         # Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
