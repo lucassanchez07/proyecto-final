@@ -15,12 +15,14 @@ class App:
         pyxel.load("./assets/resources.pyxres")
         pyxel.images[1].load(0,0,"assets/image.png")#Coge el BANCO DE IMÁGENES número 1, y dentro de él, 
 #         empezando en la esquina (0, 0), pega el contenido del archivo 'image.png'
-        pyxel.run(self.update,self.draw) #abandona el __init__ y comienza el bucle update y draw
+        pyxel.run(self.update,self.draw) #abandona el __init__ y comienza el bucle update y draw 
     
     
     def update(self):
         mario.move()
         luigi.move()
+        paquete.move()
+        paquete.subir(mario, luigi)
         
         # Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
         # Aquí es donde iría:
