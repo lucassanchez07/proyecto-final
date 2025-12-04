@@ -22,6 +22,3 @@ class Luigi:
             self.posicion += 1
         elif pyxel.btnp(pyxel.KEY_S) and self.posicion > 1:
             self.posicion -= 1
-    def dejar(self):
-        pass
-            

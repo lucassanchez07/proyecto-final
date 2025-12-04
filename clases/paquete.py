@@ -73,7 +73,7 @@ class Paquete:
             self.caer()
         
         if luigi.posicion == 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
-            luigi.dejar()
+            pass
         elif luigi.posicion != 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             self.caer()
 

@@ -2,12 +2,14 @@ import pyxel
 from clases.mario import Mario
 from clases.luigi import Luigi
 from clases.paquete import Paquete
+from clases.camión import camion
 
 SCREEN_WIDTH = 256
 SCREEN_HEIGHT = 144
 mario = Mario()
 luigi = Luigi()
 paquete = Paquete()
+camión = camion()
 
 class App:
     def __init__(self):
@@ -45,6 +47,7 @@ class App:
         mario.draw()
         luigi.draw()
         paquete.draw()
+        camión.draw(luigi,paquete)
 
 App()
 
