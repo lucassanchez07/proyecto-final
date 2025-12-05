@@ -9,13 +9,16 @@ class Paquete:
         self.caerse = False
 
 
-    def draw(self): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
+    def draw(self,luigi): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
         if self.caerse == True:
             #self.posicion_y += self.velocidad (LUCAS)
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 64, 16, 16, 7)
         
         if self.posicion_x<=249 and self.posicion_x >= 118 and self.posicion_y==self.pisos[0]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 0, 16, 16, 0 )
+            if self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
+                pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 0, 16, 16, 0 )
+        
 
         elif self.posicion_x<=118 and self.posicion_y==self.pisos[0] or self.posicion_x<=118 and self.posicion_y==self.pisos[1] :
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 16, 16, 16, 0 )
@@ -29,8 +32,12 @@ class Paquete:
         elif self.posicion_x >= 118 and self.posicion_y==self.pisos[3] or self.posicion_x >= 118 and self.posicion_y==self.pisos[4]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 64, 16, 16, 16, 0 )
 
-        elif self.posicion_x <= 118 and self.posicion_y==self.pisos[4]:
+        elif self.posicion_x <= 118 and self.posicion_y==self.pisos[4] and self.posicion_x > 70 and self.posicion_y==self.pisos[4]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 64, 32, 16, 16, 0 )
+        #DE ARRIBA A LA POSICION 1 
+        #elif   self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
+            #pyxel.blt(234, 102, 0, 48, 0, 16, 16, 0 )
+        
         
     def move(self): #con esto movemos el paquete hacia la derecha y hacia la izqueirda dependiendo del piso
         if self.posicion_y == self.pisos[0] or self.posicion_y == self.pisos[2] or self.posicion_y == self.pisos[4]:
@@ -89,6 +96,8 @@ class Paquete:
             
         if self.posicion_y >= 130: 
             self.caerse = False
+
+
         
 
 

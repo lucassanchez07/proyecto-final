@@ -46,7 +46,7 @@ class App:
         pyxel.blt(0,0,1,0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
         mario.draw()
         luigi.draw()
-        paquete.draw()
+        paquete.draw(luigi)
         camión.draw(luigi,paquete)
 
 App()
