@@ -13,6 +13,11 @@ camión = camion()
 
 class App:
     def __init__(self):
+        
+        self.lista_paquetes=[]
+        self.tiempo_entre_paquetes = 120
+        self.contador_spawn = 0
+
         pyxel.init(SCREEN_WIDTH,SCREEN_HEIGHT, title = "Mario Bros 1983")
         pyxel.load("./assets/resources.pyxres")
         pyxel.images[1].load(0,0,"assets/image.png")#Coge el BANCO DE IMÁGENES número 1, y dentro de él, 
@@ -21,12 +26,21 @@ class App:
     
     
     def update(self):
+        self.contador_spawn += 1
+
+        if self.contador_spawn >= self.tiempo_entre_paquetes:
+            nuevo_paquete = Paquete()
+            self.lista_paquetes.append(nuevo_paquete)
+            self.contador_spawn = 0
+            
         mario.move()
         luigi.move()
-        paquete.move()
-        paquete.subir(mario, luigi)
-        if paquete.caerse == True: #(con el objetivo de que se genere un bucle porque sino la bola se queda quieta y no cae ya que es puntual y solo baja un fotograma)
-            paquete.caer()
+
+        for paquete in self.lista_paquetes:
+            paquete.move()
+            paquete.subir(mario, luigi,camión)
+            if paquete.caerse == True: #(con el objetivo de que se genere un bucle porque sino la bola se queda quieta y no cae ya que es puntual y solo baja un fotograma)
+                paquete.caer()
         
         # Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
         # Aquí es donde iría:
@@ -35,7 +49,7 @@ class App:
         # 3. La detección de colisiones y caídas de paquetes.
         # 4. La actualización de la puntuación y el tiempo.
         # 'pass' indica que el método está vacío por ahora.
-
+        
     def draw(self):
         # Dibujo: todo lo que se ve en pantalla
         pyxel.cls(0) # Borra la pantalla al negro
@@ -47,7 +61,11 @@ class App:
         mario.draw()
         luigi.draw()
         paquete.draw(luigi)
-        camión.draw(luigi,paquete)
+        camión.draw(paquete)
+
+        for i in self.lista_paquetes:
+            i.draw(paquete)
+        
 
 App()
 

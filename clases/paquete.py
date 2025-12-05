@@ -1,5 +1,6 @@
 import pyxel
 
+
 class Paquete:
     def __init__(self):
         self.posicion_x = 249
@@ -7,6 +8,7 @@ class Paquete:
         self.velocidad = 1
         self.pisos = [102,85,68,51,34]
         self.caerse = False
+        self.contador_malo=0
 
 
     def draw(self,luigi): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
@@ -16,9 +18,6 @@ class Paquete:
         
         if self.posicion_x<=249 and self.posicion_x >= 118 and self.posicion_y==self.pisos[0]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 0, 16, 16, 0 )
-            if self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
-                pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 0, 16, 16, 0 )
-        
 
         elif self.posicion_x<=118 and self.posicion_y==self.pisos[0] or self.posicion_x<=118 and self.posicion_y==self.pisos[1] :
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 16, 16, 16, 0 )
@@ -35,17 +34,24 @@ class Paquete:
         elif self.posicion_x <= 118 and self.posicion_y==self.pisos[4] and self.posicion_x > 70 and self.posicion_y==self.pisos[4]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 64, 32, 16, 16, 0 )
         #DE ARRIBA A LA POSICION 1 
-        #elif   self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
+        #elif self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
             #pyxel.blt(234, 102, 0, 48, 0, 16, 16, 0 )
-        
-        
+        elif self.contador_malo ==1:
+            pyxel.blt( 225, 81, 0, 0, 16, 16, 16, 0)
+            
+        elif self.contador_malo ==2:
+            pyxel.blt( 8, 125, 0, 80, 0, 16, 16, 0)
+
+        elif self.contador_malo == 3:
+            pass
+            
     def move(self): #con esto movemos el paquete hacia la derecha y hacia la izqueirda dependiendo del piso
         if self.posicion_y == self.pisos[0] or self.posicion_y == self.pisos[2] or self.posicion_y == self.pisos[4]:
             self.posicion_x -= self.velocidad
         elif self.posicion_y == self.pisos[1] or self.posicion_y == self.pisos[3]:
             self.posicion_x += self.velocidad
 
-    def subir(self,mario,luigi):
+    def subir(self,mario,luigi,camion):
         if mario.posicion == 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 205:
             mario.coger()
             self.posicion_x = 148
@@ -80,7 +86,7 @@ class Paquete:
             self.caer()
         
         if luigi.posicion == 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
-            pass
+            camion.contador_camion +=1
         elif luigi.posicion != 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             self.caer()
 
@@ -91,11 +97,14 @@ class Paquete:
             elif self.posicion_x < 118 and self.posicion_x > 70:
                 self.posicion_x -= 1
             self.caerse = True
+
             self.posicion_y += self.velocidad
             
             
-        if self.posicion_y >= 130: 
+        if self.posicion_y >= 130:
+            self.contador_malo+=1
             self.caerse = False
+
 
 
         
