@@ -90,7 +90,7 @@ class Paquete:
         elif luigi.posicion != 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             self.caer()
 
-    def caer(self): #ARTURO CARRILEO Y PUSO MARGENES CON EL OBJETIVO DE QUE LA BOLA NO SE MUEVA HACIA LOS LADOS
+    def caer(self): # MARGENES CON EL OBJETIVO DE QUE LA BOLA NO SE MUEVA HACIA LOS LADOS
         if self.posicion_y < 130 :
             if self.posicion_x > 118 and self.posicion_x < 171:
                 self.posicion_x += 1
