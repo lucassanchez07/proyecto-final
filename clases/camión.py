@@ -6,8 +6,9 @@ class camion:
         self.posicion_y = 62
         self.paquetes = 0
         self.contador_camion = 0
+        self.fallos = 0
     
-    def draw(self,paquete):#HEMOS PINTADO UN CAMION ENCIMA DE OTRO
+    def draw(self):#HEMOS PINTADO UN CAMION ENCIMA DE OTRO
         if self.contador_camion == 0:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 0, 56, 32, 32, 0)
 

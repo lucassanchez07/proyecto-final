@@ -8,10 +8,10 @@ class Paquete:
         self.velocidad = 1
         self.pisos = [102,85,68,51,34]
         self.caerse = False
-        self.contador_malo=0
+        self.fallos=0
 
 
-    def draw(self,luigi): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
+    def draw(self): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
         if self.caerse == True:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 64, 16, 16, 7)
         
@@ -35,15 +35,7 @@ class Paquete:
         #DE ARRIBA A LA POSICION 1 
         #elif self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
             #pyxel.blt(234, 102, 0, 48, 0, 16, 16, 0 )
-        if self.contador_malo ==1:
-            pyxel.blt( 225, 81, 0, 0, 16, 16, 16, 0)
-            
-        elif self.contador_malo ==2:
-            pyxel.blt( 8, 125, 0, 80, 0, 16, 16, 0)
-            pyxel.blt( 225, 81, 0, 0, 16, 16, 16, 0)
-
-        elif self.contador_malo == 3:
-            pyxel.cls(0)
+       
             
     def move(self): #con esto movemos el paquete hacia la derecha y hacia la izqueirda dependiendo del piso
         if self.posicion_y == self.pisos[0] or self.posicion_y == self.pisos[2] or self.posicion_y == self.pisos[4]:
@@ -57,12 +49,14 @@ class Paquete:
             self.posicion_x = 148
         elif mario.posicion != 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 205:
             self.caer()
+            camion.fallos += 1
 
         if luigi.posicion == 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 70:#EL INICIAL ERA 82 Y LO HEMOS CAMBIADO A 70 PARA QUE NO COINCIDA 
             self.posicion_x = 92 
             self.posicion_y = self.pisos[1]
         elif luigi.posicion != 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 70:
             self.caer()
+            camion.fallos += 1
 
 
         #otro piso
@@ -71,12 +65,14 @@ class Paquete:
             self.posicion_y = self.pisos[2]
         elif mario.posicion != 2 and self.posicion_y == self.pisos[1] and self.posicion_x == 171:
             self.caer()
+            camion.fallos += 1
 
         if luigi.posicion == 2 and self.posicion_y == self.pisos[2] and self.posicion_x == 70:
             self.posicion_x = 92
             self.posicion_y = self.pisos[3]  
         elif luigi.posicion != 2 and self.posicion_y == self.pisos[2] and self.posicion_x == 70:
             self.caer()
+            camion.fallos += 1
 
         #otro piso 3
         if mario.posicion == 3 and self.posicion_y == self.pisos[3] and self.posicion_x == 171:
@@ -84,11 +80,13 @@ class Paquete:
             self.posicion_y = self.pisos[4]
         elif mario.posicion != 3 and self.posicion_y == self.pisos[3] and self.posicion_x == 171:
             self.caer()
+            camion.fallos += 1
         
         if luigi.posicion == 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             camion.contador_camion +=1
         elif luigi.posicion != 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             self.caer()
+            camion.fallos += 1
 
     def caer(self): # MARGENES CON EL OBJETIVO DE QUE LA BOLA NO SE MUEVA HACIA LOS LADOS
         if self.posicion_y < 130 :
@@ -102,7 +100,6 @@ class Paquete:
             
             
         if self.posicion_y >= 130:
-            self.contador_malo+=1
             self.caerse = False
 
 

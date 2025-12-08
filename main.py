@@ -60,11 +60,19 @@ class App:
         pyxel.blt(0,0,1,0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
         mario.draw()
         luigi.draw()
-        paquete.draw(luigi)
-        camión.draw(paquete)
+        camión.draw()
 
-        for i in self.lista_paquetes:
-            i.draw(paquete)
+        for paquete in self.lista_paquetes:
+          paquete.draw()
+
+        
+        if camión.fallos == 1:
+            pyxel.blt(225, 81, 0, 0, 16, 16, 16, 0)
+        elif camión.fallos == 2:
+            pyxel.blt(8, 125, 0, 80, 0, 16, 16, 0)
+            pyxel.blt(225, 81, 0, 0, 16, 16, 16, 0)
+        #elif camión.fallos >= 3:
+            #pyxel.cls(0)
         
 
 App()
