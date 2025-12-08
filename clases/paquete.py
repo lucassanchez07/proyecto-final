@@ -32,9 +32,7 @@ class Paquete:
 
         elif self.posicion_x <= 118 and self.posicion_y==self.pisos[4] and self.posicion_x > 70 and self.posicion_y==self.pisos[4]:
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 64, 32, 16, 16, 0 )
-        #DE ARRIBA A LA POSICION 1 
-        #elif self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
-            #pyxel.blt(234, 102, 0, 48, 0, 16, 16, 0 )
+        
        
             
     def move(self): #con esto movemos el paquete hacia la derecha y hacia la izqueirda dependiendo del piso

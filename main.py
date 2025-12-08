@@ -66,13 +66,13 @@ class App:
           paquete.draw()
 
         
-        if camión.fallos == 1:
-            pyxel.blt(225, 81, 0, 0, 16, 16, 16, 0)
+        if camión.fallos == 1: #Vidas del jugador(dos jefes y una pantalla negro game over)
+            pyxel.blt(225, 79, 0, 0, 16, 16, 16, 0)
         elif camión.fallos == 2:
-            pyxel.blt(8, 125, 0, 80, 0, 16, 16, 0)
-            pyxel.blt(225, 81, 0, 0, 16, 16, 16, 0)
-        #elif camión.fallos >= 3:
-            #pyxel.cls(0)
+            pyxel.blt(8, 120, 0, 80, 0, 16, 16, 0)
+            pyxel.blt(225, 79, 0, 0, 16, 16, 16, 0)
+        elif camión.fallos >= 3:
+            pyxel.cls(0)
         
 
 App()
