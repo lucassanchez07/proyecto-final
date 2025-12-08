@@ -16,7 +16,7 @@ class App:
         
         self.lista_paquetes=[]
         self.tiempo_entre_paquetes = 120
-        self.contador_spawn = 0
+        self.contador_aparicion = 0
 
         pyxel.init(SCREEN_WIDTH,SCREEN_HEIGHT, title = "Mario Bros 1983")
         pyxel.load("./assets/resources.pyxres")
@@ -26,12 +26,12 @@ class App:
     
     
     def update(self):
-        self.contador_spawn += 1
+        self.contador_aparicion += 1
 
-        if self.contador_spawn >= self.tiempo_entre_paquetes:
+        if self.contador_aparicion >= self.tiempo_entre_paquetes:
             nuevo_paquete = Paquete()
             self.lista_paquetes.append(nuevo_paquete)
-            self.contador_spawn = 0
+            self.contador_aparicion = 0
             
         mario.move()
         luigi.move()

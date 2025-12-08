@@ -13,7 +13,6 @@ class Paquete:
 
     def draw(self,luigi): #PINTAMOS POR RANGOS LOS PAQUETES (no en un punto exacto)
         if self.caerse == True:
-            #self.posicion_y += self.velocidad (LUCAS)
             pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 64, 16, 16, 7)
         
         if self.posicion_x<=249 and self.posicion_x >= 118 and self.posicion_y==self.pisos[0]:
@@ -36,14 +35,15 @@ class Paquete:
         #DE ARRIBA A LA POSICION 1 
         #elif self.posicion_x <= 70  and self.posicion_y == self.pisos[4]:
             #pyxel.blt(234, 102, 0, 48, 0, 16, 16, 0 )
-        elif self.contador_malo ==1:
+        if self.contador_malo ==1:
             pyxel.blt( 225, 81, 0, 0, 16, 16, 16, 0)
             
         elif self.contador_malo ==2:
             pyxel.blt( 8, 125, 0, 80, 0, 16, 16, 0)
+            pyxel.blt( 225, 81, 0, 0, 16, 16, 16, 0)
 
         elif self.contador_malo == 3:
-            pass
+            pyxel.cls(0)
             
     def move(self): #con esto movemos el paquete hacia la derecha y hacia la izqueirda dependiendo del piso
         if self.posicion_y == self.pisos[0] or self.posicion_y == self.pisos[2] or self.posicion_y == self.pisos[4]:
