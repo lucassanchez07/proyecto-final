@@ -50,9 +50,18 @@ class App:
             if paquete.caerse == True: #(con el objetivo de que se genere un bucle porque sino la bola se queda quieta y no cae ya que es puntual y solo baja un fotograma)
                 paquete.caer()
         
-        if camión.viajes_hechos >= 3: #CON esto cada tres camiones llenos, se consigue una vida( desaparece un jefe)
-            camión.fallos -= 1
-            camión.viajes_hechos = 0 
+        #Si el camión se llena (llega a 9), sumamos viaje y lo vaciamos
+        if camión.contador_camion >= 9:
+            camión.viajes_hechos += 1
+            camión.contador_camion = 1 # Vaciamos el camión para que empiece de nuevo
+        
+        # Si llegamos a 3 viajes, ganamos vida
+        if camión.viajes_hechos >= 3: 
+            # Solo restamos fallo si tenemos alguno (para no tener fallos negativos)
+            if camión.fallos > 0:
+                camión.fallos -= 1
+            
+            camión.viajes_hechos = 0 # Reiniciamos el contador de viajes
 
         
 
@@ -87,14 +96,7 @@ class App:
             pyxel.text(100, 70, "GAME OVER", 4)
             pyxel.text(5, 5, f"PUNTOS: {self.puntos}", 7)
             return
-
-           
-
-        
-
-
-        
-        
+            
 
 App()
 

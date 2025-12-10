@@ -38,10 +38,7 @@ class camion:
         elif self.contador_camion == 8:
                     pyxel.blt(self.posicion_x, self.posicion_y, 0, 48, 144, 32, 32, 0 )
 
-        elif self.contador_camion == 9:
-                    pyxel.blt(self.posicion_x, self.posicion_y, 0,168, 0, 48, 48, 0 )
-                    self.viajes_hechos += 1
+        
                     
-        elif self.contador_camion == 10:
-                    self.contador_camion = 1            
+                    
             
