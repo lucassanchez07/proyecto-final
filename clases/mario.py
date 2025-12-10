@@ -27,5 +27,5 @@ class Mario:
         elif pyxel.btnp(pyxel.KEY_DOWN) and self.posicion > 1:
             self.posicion -= 1
 
-    def coger(self):
+    def coger(self):#Mario se gira
         self.tiempo = 10

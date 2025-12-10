@@ -17,6 +17,10 @@ class App:
         self.lista_paquetes=[]
         self.tiempo_entre_paquetes = 120
         self.contador_aparicion = 0
+        self.ganar_partida = False
+        self.puntos = 0 #Contador de puntos
+        self.game_over = False
+        
 
         pyxel.init(SCREEN_WIDTH,SCREEN_HEIGHT, title = "Mario Bros 1983")
         pyxel.load("./assets/resources.pyxres")
@@ -25,7 +29,11 @@ class App:
         pyxel.run(self.update,self.draw) #abandona el __init__ y comienza el bucle update y draw 
     
     
-    def update(self):
+    def update(self):# Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
+        
+        if self.game_over == True:#Si no ponemos esto el juego cuando la pantalla esta en negro sigue sumando puntos 
+            return
+        
         self.contador_aparicion += 1
 
         if self.contador_aparicion >= self.tiempo_entre_paquetes:
@@ -38,17 +46,16 @@ class App:
 
         for paquete in self.lista_paquetes:
             paquete.move()
-            paquete.subir(mario, luigi,camión)
+            paquete.subir(mario, luigi,self, camión)
             if paquete.caerse == True: #(con el objetivo de que se genere un bucle porque sino la bola se queda quieta y no cae ya que es puntual y solo baja un fotograma)
                 paquete.caer()
         
-        # Este método se llama en cada frame para ACTUALIZAR la lógica del juego.
-        # Aquí es donde iría:
-        # 1. El manejo de la entrada del usuario (teclas de Mario y Luigi).
-        # 2. El cálculo de la posición de los personajes y paquetes.
-        # 3. La detección de colisiones y caídas de paquetes.
-        # 4. La actualización de la puntuación y el tiempo.
-        # 'pass' indica que el método está vacío por ahora.
+        if camión.viajes_hechos >= 3: #CON esto cada tres camiones llenos, se consigue una vida( desaparece un jefe)
+            camión.fallos -= 1
+            camión.viajes_hechos = 0 
+
+        
+
         
     def draw(self):
         # Dibujo: todo lo que se ve en pantalla
@@ -58,12 +65,15 @@ class App:
         
         # pyxel.blt(x_destino, y_destino, img_banco, x_origen, y_origen, ancho, alto)
         pyxel.blt(0,0,1,0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
+        
         mario.draw()
         luigi.draw()
         camión.draw()
-
+        
         for paquete in self.lista_paquetes:
           paquete.draw()
+        
+        pyxel.text(5, 5, f"PUNTOS: {self.puntos}", 0) #Los puntos se pintan aqui
 
         
         if camión.fallos == 1: #Vidas del jugador(dos jefes y una pantalla negro game over)
@@ -72,7 +82,18 @@ class App:
             pyxel.blt(8, 120, 0, 80, 0, 16, 16, 0)
             pyxel.blt(225, 79, 0, 0, 16, 16, 16, 0)
         elif camión.fallos >= 3:
+            self.game_over = True
             pyxel.cls(0)
+            pyxel.text(100, 70, "GAME OVER", 4)
+            pyxel.text(5, 5, f"PUNTOS: {self.puntos}", 7)
+            return
+
+           
+
+        
+
+
+        
         
 
 App()

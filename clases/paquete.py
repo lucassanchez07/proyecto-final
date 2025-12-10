@@ -41,10 +41,11 @@ class Paquete:
         elif self.posicion_y == self.pisos[1] or self.posicion_y == self.pisos[3]:
             self.posicion_x += self.velocidad
 
-    def subir(self,mario,luigi,camion):
+    def subir( self , mario , luigi ,app ,camion,):
         if mario.posicion == 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 205:
             mario.coger()
             self.posicion_x = 148
+            app.puntos += 2
         elif mario.posicion != 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 205:
             self.caer()
             camion.fallos += 1
@@ -52,6 +53,7 @@ class Paquete:
         if luigi.posicion == 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 70:#EL INICIAL ERA 82 Y LO HEMOS CAMBIADO A 70 PARA QUE NO COINCIDA 
             self.posicion_x = 92 
             self.posicion_y = self.pisos[1]
+            app.puntos += 2
         elif luigi.posicion != 1 and self.posicion_y == self.pisos[0] and self.posicion_x == 70:
             self.caer()
             camion.fallos += 1
@@ -61,13 +63,15 @@ class Paquete:
         if mario.posicion == 2 and self.posicion_y == self.pisos[1] and self.posicion_x == 171:
             self.posicion_x = 148
             self.posicion_y = self.pisos[2]
+            app.puntos +=2
         elif mario.posicion != 2 and self.posicion_y == self.pisos[1] and self.posicion_x == 171:
             self.caer()
             camion.fallos += 1
 
         if luigi.posicion == 2 and self.posicion_y == self.pisos[2] and self.posicion_x == 70:
             self.posicion_x = 92
-            self.posicion_y = self.pisos[3]  
+            self.posicion_y = self.pisos[3]
+            app.puntos +=2  
         elif luigi.posicion != 2 and self.posicion_y == self.pisos[2] and self.posicion_x == 70:
             self.caer()
             camion.fallos += 1
@@ -76,12 +80,14 @@ class Paquete:
         if mario.posicion == 3 and self.posicion_y == self.pisos[3] and self.posicion_x == 171:
             self.posicion_x = 148
             self.posicion_y = self.pisos[4]
+            app.puntos +=2
         elif mario.posicion != 3 and self.posicion_y == self.pisos[3] and self.posicion_x == 171:
             self.caer()
             camion.fallos += 1
         
         if luigi.posicion == 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             camion.contador_camion +=1
+            app.puntos += 10
         elif luigi.posicion != 3 and self.posicion_y == self.pisos[4] and self.posicion_x == 70:
             self.caer()
             camion.fallos += 1
